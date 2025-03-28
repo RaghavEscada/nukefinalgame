@@ -1,10 +1,8 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import { LinkHover } from "@/animation";
-import { Button, Heading } from "@/components";
+import {Heading } from "@/components";
 import { TimelineDemo } from "@/data/data";
-import { ArrowUpRight, Zap, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import { Zap, Instagram, Linkedin, MessageCircle, Rocket } from "lucide-react";
 
 const socialLinks = [
   { id: 1, title: "Instagram", href: "https://instagram.com", icon: <Instagram size={20} /> },
@@ -14,7 +12,7 @@ const socialLinks = [
 
 export default function About() {
   return (
-    <section className="w-full bg-[#0A0A0A] text-white py-16 px-6 sm:px-4 rounded-t-[40px] z-20 relative overflow-hidden">
+    <section className="w-full bg-[#0A0A0A] text-white py-16 px-6 sm:px-4 rounded-t-[40px] z-20 relative rounded-xl overflow-hidden">
       {/* Header Section */}
       <div className="text-center max-w-5xl mx-auto">
         <h2 className="text-[3.5rem] font-black font-NeueMontreal leading-tight tracking-tight">
@@ -39,7 +37,7 @@ export default function About() {
               Nuke's Methodology
             </h3>
             <img 
-              src="/wall.jpg" 
+              src="/aboutdown.gif" 
               alt="Nuke's Methodology" 
               className="mt-6 w-full rounded-xl shadow-xl"
             />
@@ -54,25 +52,30 @@ export default function About() {
           <div className="w-[50%] sm:w-full flex flex-col gap-8">
             {/* Strategy Point 1 */}
             <div className="flex items-start gap-4">
-              <Zap className="text-[#4ECDC4]" size={30} strokeWidth={2.5} />
+              <Rocket className="text-[#4ECDC4]" size={40} strokeWidth={2.5} />
               <div>
-                <h4 className="text-xl font-bold">Strategic Approach</h4>
+                <h4 className="text-xl font-bold">Aesthetically Magnetic</h4>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  We develop strategies that pull in leads like a magnet.  
-                  With viral-worthy content and performance-driven marketing,  
-                  we help you turn attention into real business growth.
+                We craft lead-generation strategies that attract like a supercharged magnet.
+With viral-worthy content and performance-driven marketing,
+we transform fleeting attention into unstoppable business growth.
+
+
                 </p>
               </div>
             </div>
 
             {/* Strategy Point 2 */}
             <div className="flex items-start gap-4">
-              <Zap className="text-[#FF4D4D]" size={30} strokeWidth={2.5} />
+              <Zap className="text-[#FF4D4D]" size={40} strokeWidth={2.5} />
               <div>
-                <h4 className="text-xl font-bold">Creative Execution</h4>
+                <h4 className="text-xl font-bold">Creative Domination</h4>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  Strategy meets design. We turn complex ideas  
-                  into compelling visual stories that dominate digital platforms.
+                Where strategy meets bold design.
+We turn complex ideas into visually striking narratives,
+commanding attention and dominating digital landscapes.
+
+
                 </p>
               </div>
             </div>

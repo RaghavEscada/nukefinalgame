@@ -87,6 +87,9 @@ export default function Home() {
                                             src={game.image}
                                             alt={game.name}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            priority={index < 3}
+                                            quality={75}
                                             className="object-cover transition-transform duration-300 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

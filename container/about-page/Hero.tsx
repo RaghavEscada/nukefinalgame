@@ -6,7 +6,6 @@ import { Eyes } from "@/components";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { MacbookScrollDemo } from "@/data/data";
 
 export default function Hero() {
 	return (
@@ -43,9 +42,7 @@ export default function Hero() {
 					</div>
 					
 					{/* MacbookScrollDemo in full width container */}
-					<div className="w-full h-full my-12">
-						<MacbookScrollDemo />
-					</div>
+					
 					
 					<div className="w-full border-t border-[#21212155] pt-[20px]">
 						<div className="w-full flex justify-between padding-x sm:flex-col xm:flex-col gap-[20px]">

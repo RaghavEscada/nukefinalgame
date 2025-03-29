@@ -47,7 +47,7 @@ export function AnimatedTestimonialsDemo() {
         "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
       name: "Lisa Thompson",
       designation: "VP of Technology at FutureNet",
-      src: "/team4.jpeg",
+      src: "/team2.jpeg",
     },
   ];
   return <AnimatedTestimonials testimonials={testimonials} />;

@@ -1,90 +1,149 @@
 "use client";
-import dynamic from "next/dynamic";
-import { useState } from "react";
+import Spline from '@splinetool/react-spline';
+import { useState } from 'react';
+import { Curve } from '@/components';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-// Disable SSR for Spline
-const Spline = dynamic(() => import("@splinetool/react-spline"), { ssr: false });
-
-const scenes = [
-    { id: 1, url: "https://prod.spline.design/yxjkoyT5oby9JLPy/scene.splinecode", name: "Scene 1" },
-    { id: 2, url: "https://prod.spline.design/G46bcMRddu7fV2GY/scene.splinecode", name: "Game 1" },
-    { id: 3, url: "https://prod.spline.design/kq0Sk-NbtEC7Gdkc/scene.splinecode", name: "Game 2" }
+const games = [
+    { 
+        id: 1, 
+        name: "Game 1", 
+        scene: "https://prod.spline.design/s5VgRsBwm7mq-Wqm/scene.splinecode",
+        image: "/nuke.png"
+    },
+    { 
+        id: 2, 
+        name: "Game 2", 
+        scene: "https://prod.spline.design/G46bcMRddu7fV2GY/scene.splinecode",
+        image: "/nuke.png"
+    },
+    { 
+        id: 3, 
+        name: "Game 3", 
+        scene: "https://prod.spline.design/kq0Sk-NbtEC7Gdkc/scene.splinecode",
+        image: "/nuke.png"
+    },
+    { 
+        id: 4, 
+        name: "Game 4", 
+        scene: "https://prod.spline.design/yxjkoyT5oby9JLPy/scene.splinecode",
+        image: "/nuke.png"
+    },
+    { 
+        id: 5, 
+        name: "Game 5", 
+        scene: "https://prod.spline.design/U-0mKQBHIpiTKr3z/scene.splinecode",
+        image: "/nuke.png"
+    }
 ];
 
-export default function SplineView() {
-    const [selectedScene, setSelectedScene] = useState(scenes[0].url);
-    const [buttonsVisible, setButtonsVisible] = useState(true);
-    const [loading, setLoading] = useState(true);
-
-    const handleSceneChange = (url) => {
-        setSelectedScene(url);
-        setButtonsVisible(false);
-        setLoading(true);
-    };
+export default function Home() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [selectedGame, setSelectedGame] = useState<string | null>(null);
 
     return (
-        <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
-            {loading && (
-                <div style={{
-                    position: "absolute", width: "100vw", height: "100vh",
-                    background: "#000", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
-                    zIndex: 999, color: "#fff", fontSize: "20px", fontWeight: "bold"
-                }}>
-                    <div className="cool-loader"></div>
-                    <p style={{ marginTop: "15px" }}>Loading...</p>
-                </div>
-            )}
-
-            {buttonsVisible && (
-                <div style={{
-                    position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
-                    display: "flex", gap: "15px", zIndex: 1000, background: "rgba(0, 0, 0, 0.7)",
-                    padding: "15px 20px", borderRadius: "12px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)"
-                }}>
-                    {scenes.slice(1).map(scene => (
-                        <button
-                            key={scene.id} onClick={() => handleSceneChange(scene.url)}
-                            style={{
-                                padding: "12px 20px", cursor: "pointer", background: "linear-gradient(135deg, #ff7eb3, #ff758c)",
-                                color: "#fff", border: "none", borderRadius: "8px", fontSize: "16px",
-                                fontWeight: "bold", transition: "0.3s ease-in-out",
-                                boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)"
-                            }}
-                            onMouseOver={(e) => e.target.style.opacity = "0.8"}
-                            onMouseOut={(e) => e.target.style.opacity = "1"}
+        <Curve backgroundColor="#f1f1f1">
+            <main className="w-screen h-screen relative">
+                {!selectedGame ? (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0A0A0A] z-50">
+                        {/* Modern Grid Pattern Background */}
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+                        
+                        {/* Subtle Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
+                        
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center mb-12 relative z-10"
                         >
-                            {scene.name}
-                        </button>
-                    ))}
-                </div>
-            )}
-
-            <div style={{ width: "100vw", height: "100vh" }}>
-                <Spline scene={selectedScene} onLoad={() => setLoading(false)} />
-            </div>
-            
-            <Spline scene="https://prod.spline.design/U-0mKQBHIpiTKr3z/scene.splinecode" />
-
-            <style jsx>{`
-                .cool-loader {
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    background: radial-gradient(circle, rgba(255,0,150,1) 0%, rgba(0,204,255,1) 100%);
-                    box-shadow: 0 0 20px rgba(255, 0, 150, 0.8), 0 0 40px rgba(0, 204, 255, 0.8);
-                    animation: pulse 1.5s infinite alternate, rotate 1s linear infinite;
-                }
-
-                @keyframes pulse {
-                    0% { transform: scale(1); opacity: 0.7; }
-                    100% { transform: scale(1.2); opacity: 1; }
-                }
-
-                @keyframes rotate {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            `}</style>
-        </div>
+                            <h1 className="text-white text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+                                Game Selection
+                            </h1>
+                            <p className="text-white/50 text-lg">Choose your adventure</p>
+                        </motion.div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full px-4 relative z-10">
+                            {games.map((game, index) => (
+                                <motion.button
+                                    key={game.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    onClick={() => {
+                                        setSelectedGame(game.scene);
+                                        setIsLoading(true);
+                                    }}
+                                    className="group relative overflow-hidden rounded-xl bg-white/5 
+                                             hover:bg-white/10 transition-all duration-300 
+                                             transform hover:scale-105
+                                             border border-white/5 backdrop-blur-sm"
+                                >
+                                    {/* Image Container */}
+                                    <div className="relative w-full h-48 overflow-hidden">
+                                        <Image
+                                            src={game.image}
+                                            alt={game.name}
+                                            fill
+                                            className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                    </div>
+                                    
+                                    {/* Content */}
+                                    <div className="p-6">
+                                        <h2 className="text-2xl font-bold text-white mb-2">{game.name}</h2>
+                                        <div className="flex items-center text-white/40 text-sm">
+                                            <span className="mr-2">▶</span>
+                                            <span>Click to Play</span>
+                                        </div>
+                                    </div>
+                                </motion.button>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                        {isLoading && (
+                            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0A0A0A] z-50">
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="text-center"
+                                >
+                                    <div className="text-white text-xl mb-6">Loading...</div>
+                                    <div className="text-white/40 text-sm space-y-2">
+                                        <p className="font-semibold text-white/70">Controls:</p>
+                                        <p>Click and Drag - Rotate View</p>
+                                        <p>WASD - Movement</p>
+                                        <p>↑↓ - Camera Angles</p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        )}
+                        <Spline
+                            scene={selectedGame}
+                            onLoad={() => setIsLoading(false)}
+                        />
+                        <motion.button
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => {
+                                setSelectedGame(null);
+                                setIsLoading(false);
+                            }}
+                            className="absolute top-20 right-4 bg-white/5 hover:bg-white/10 text-white px-6 py-3 rounded-lg 
+                                     backdrop-blur-sm transition-all duration-300 z-50 border border-white/5"
+                        >
+                            Back to Menu
+                        </motion.button>
+                    </>
+                )}
+            </main>
+        </Curve>
     );
 }

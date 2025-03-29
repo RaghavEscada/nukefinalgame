@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { navVariants } from "@/motion";
 import { TextHover } from "@/animation";
 import { navbarItems } from "@/constants";
@@ -19,9 +19,19 @@ export default function Navbar() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showStartPrompt, setShowStartPrompt] = useState(true);
   const [animationState, setAnimationState] = useState("initial"); // initial, explosion, complete
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const boomSoundRef = useRef<HTMLAudioElement | null>(null);
   const { scrollY } = useScroll();
+
+  // Initialize audio context
+  useEffect(() => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      const context = new AudioContext();
+      setAudioContext(context);
+    }
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -32,54 +42,103 @@ export default function Navbar() {
     }
   });
 
-  const startExperience = () => {
-    // Play boom sound effect immediately
-    if (boomSoundRef.current) {
-      boomSoundRef.current.play().catch(error => {
-        console.error("Error playing boom sound:", error);
-      });
-    }
-    
-    // Start explosion animation right away
-    setAnimationState("explosion");
-    
-    // Start background music
-    const audio = audioRef.current;
-    if (audio) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const audioContext = new AudioContext();
+  const startExperience = async () => {
+    try {
+      // Resume audio context if it exists
+      if (audioContext && audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+
+      // Play boom sound effect immediately
+      if (boomSoundRef.current) {
+        try {
+          await boomSoundRef.current.play();
+        } catch (error) {
+          console.warn("Boom sound playback failed:", error);
+        }
+      }
       
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch(error => {
-        console.error("Error playing background audio:", error);
-      });
-    }
-    
-    // Complete animation and remove entry screen
-    setTimeout(() => {
-      setAnimationState("complete");
+      // Start explosion animation right away
+      setAnimationState("explosion");
+      
+      // Start background music
+      const audio = audioRef.current;
+      if (audio) {
+        // Set volume to 0 initially
+        audio.volume = 0;
+        
+        try {
+          await audio.play();
+          
+          // Fade in the volume
+          const fadeIn = setInterval(() => {
+            if (audio.volume < 0.5) {
+              audio.volume += 0.1;
+            } else {
+              clearInterval(fadeIn);
+            }
+          }, 100);
+          
+          setIsPlaying(true);
+        } catch (error) {
+          console.warn("Background music playback failed:", error);
+        }
+      }
+      
+      // Complete animation and remove entry screen
       setTimeout(() => {
-        setShowStartPrompt(false);
-      }, 500);
-    }, 2000);
+        setAnimationState("complete");
+        setTimeout(() => {
+          setShowStartPrompt(false);
+        }, 500);
+      }, 2000);
+    } catch (error) {
+      console.error("Error during experience start:", error);
+      // Fallback: continue with animation even if audio fails
+      setAnimationState("explosion");
+      setTimeout(() => {
+        setAnimationState("complete");
+        setTimeout(() => {
+          setShowStartPrompt(false);
+        }, 500);
+      }, 2000);
+    }
   };
 
-  const toggleAudio = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
-        setIsPlaying(false);
-      } else {
-        audio.play().then(() => {
-          setIsPlaying(true);
-        }).catch(error => {
-          console.error("Error playing audio:", error);
-        });
+  const toggleAudio = async () => {
+    try {
+      const audio = audioRef.current;
+      if (audio) {
+        if (isPlaying) {
+          await audio.pause();
+          setIsPlaying(false);
+        } else {
+          // Resume audio context if it exists
+          if (audioContext && audioContext.state === 'suspended') {
+            await audioContext.resume();
+          }
+          
+          try {
+            await audio.play();
+            setIsPlaying(true);
+          } catch (error) {
+            console.warn("Audio playback failed:", error);
+          }
+        }
       }
+    } catch (error) {
+      console.error("Error toggling audio:", error);
     }
   };
+
+  // Cleanup audio context on unmount
+  useEffect(() => {
+    return () => {
+      if (audioContext) {
+        audioContext.close();
+      }
+    };
+  }, [audioContext]);
 
   return (
     <>

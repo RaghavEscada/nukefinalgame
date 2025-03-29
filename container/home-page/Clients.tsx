@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { clientsItem } from "@/constants";
-import { Button, Ratings } from "@/components";
+import { Button } from "@/components";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedTestimonialsDemo } from "@/data/data";
 

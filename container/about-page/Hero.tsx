@@ -41,9 +41,6 @@ export default function Hero() {
 						</div>
 					</div>
 					
-					{/* MacbookScrollDemo in full width container */}
-					
-					
 					<div className="w-full border-t border-[#21212155] pt-[20px]">
 						<div className="w-full flex justify-between padding-x sm:flex-col xm:flex-col gap-[20px]">
 							<div className="w-[10%] sm:w-full xm:w-full">

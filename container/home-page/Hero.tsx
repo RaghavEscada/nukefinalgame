@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowUpRight, Sparkles, MousePointer } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { MacbookScrollDemo } from "@/data/data";
 
 export default function Hero() {
   // State to control the beatdrop animation

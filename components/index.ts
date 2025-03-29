@@ -11,6 +11,5 @@ export { default as ProjectCard } from './ProjectCard';
 export { default as Tags } from './Tags';
 export { default as PlayVideo } from './PlayVideo';
 export { default as Curve } from './Curve/Curve';
-export { default as Ratings } from './Ratings';
 export { default as Heading } from './Heading';
 export { default as MobileNav } from './MobileNav';

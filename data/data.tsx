@@ -40,7 +40,7 @@ export function AnimatedTestimonialsDemo() {
         "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
       name: "James Kim",
       designation: "Engineering Lead at DataPro",
-      src: "/team3.jpeg",
+      src: "/team4.png",
     },
     {
       quote:

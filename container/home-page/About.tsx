@@ -99,13 +99,14 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="space-y-12"
           >
-            <div className="relative aspect-video rounded-xl overflow-hidden">
-              <Image 
-                src="/aboutdown.gif" 
-                alt="Nuke Marketing - Your Brand's Power Source" 
-                fill
+            <div className="relative" style={{ width: '600px', height: '400px' }}>
+              <video 
+                src="/nuke.mp4"
+
+                autoPlay
+                loop
+                muted
                 className="object-cover"
-                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               {/* Nuclear Glow Effect */}

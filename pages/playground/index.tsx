@@ -10,7 +10,8 @@ const games = [
         id: 1, 
         name: "Game 1", 
         scene: "https://prod.spline.design/s5VgRsBwm7mq-Wqm/scene.splinecode",
-        image: "/nuke.png"
+        image: "/nuke.png",
+        description: "Experience the thrill of Game 1, a fast-paced adventure that will keep you on the edge of your seat."
     },
     { 
         id: 2, 
@@ -30,12 +31,7 @@ const games = [
         scene: "https://prod.spline.design/yxjkoyT5oby9JLPy/scene.splinecode",
         image: "/nuke.png"
     },
-    { 
-        id: 5, 
-        name: "Game 5", 
-        scene: "https://prod.spline.design/U-0mKQBHIpiTKr3z/scene.splinecode",
-        image: "/nuke.png"
-    }
+    
 ];
 
 export default function Home() {

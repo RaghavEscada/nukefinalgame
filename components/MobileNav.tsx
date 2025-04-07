@@ -16,7 +16,7 @@ export default function MobileNav() {
 				<Link href={"/"}>
 					<Image
 						src="/nukename2.png"
-						alt="nukemarketing"
+						alt="nukemarketinggg"
 						width={70}
 						height={70}
 					/>

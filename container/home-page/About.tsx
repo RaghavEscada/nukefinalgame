@@ -223,56 +223,8 @@ export default function About() {
       </div>
 
       {/* Timeline Section */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-6xl mx-auto mt-32 relative z-10"
-      >
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Our <span className="text-[#FF4D4D]">Blast Radius</span>
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            From startup to industry explosion: Our journey of growth and impact
-          </p>
-        </div>
-        <div className="relative">
-          {/* Gradient Background */}
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-br from-[#FF4D4D]/10 via-[#4ECDC4]/10 to-[#FF4D4D]/10 rounded-2xl"
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          
-          {/* Glow Effect */}
-          <motion.div 
-            className="absolute inset-0 bg-[#FF4D4D]/5 blur-3xl rounded-2xl"
-            animate={{
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          {/* Grid Pattern Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:20px_20px] rounded-2xl" />
-          
-          {/* Timeline Content */}
-          <div className="relative bg-black/30 backdrop-blur-sm rounded-2xl border border-white/20 p-8 shadow-lg shadow-[#FF4D4D]/5">
-            <TimelineDemo />
-          </div>
-        </div>
-      </motion.div>
+     
+      
     </section>
   );
 }

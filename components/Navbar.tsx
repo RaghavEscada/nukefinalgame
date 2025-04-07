@@ -159,13 +159,7 @@ export default function Navbar() {
                 transition={{ duration: 0.8 }}
                 className="mb-8"
               >
-                <Image
-                  src="/nukename2.png"
-                  alt="Nuke Marketing Logo"
-                  width={240}
-                  height={240}
-                  priority
-                />
+               
               </motion.div>
               
               <motion.h1 

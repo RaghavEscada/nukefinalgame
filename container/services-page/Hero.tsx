@@ -2,6 +2,18 @@ export default function Hero() {
 	return (
 		<section className="w-full min-h-screen">
 			<div className="w-full flex flex-col justify-between">
+			<div className="w-full flex flex-col items-center justify-center bg-black">
+				<div
+					data-scroll
+					data-scroll-speed="-.2"
+					className="bg-black w-[75%] py-[20px] rounded-t-[10px]	"
+				/>
+				<div
+					className="bg-red-500 relative z-20 w-[90%] py-[20px] rounded-t-[10px]"
+					data-scroll
+					data-scroll-speed="-.1"
+				/>
+			</div>
 				<div className="w-full flex flex-col">
 					<div className="w-full margin padding-x">
 						<div>
@@ -11,17 +23,7 @@ export default function Hero() {
 						</div>
 					</div>
 					<div className="w-full border-t border-[#21212155]">
-						<p className="w-[80%] sm:w-full xm:w-full sub-heading font-normal padding-x font-NeueMontreal text-secondry padding-y">
-							We create&nbsp;
-							<span className="xl:link-flash lg:link-flash md:link-flash cursor-pointer">
-								bombin'&nbsp;
-							</span>
-							and&nbsp;
-							<span className="xl:link-flash lg:link-flash md:link-flash cursor-pointer">
-								converting&nbsp;
-							</span>
-							social media content that educate, inspire and influence action.
-						</p>
+						
 					</div>
 					<div className="w-full flex border-t border-[#21212155] py-[20px] flex-col">
 						<div className="w-full flex justify-between sm:flex-col xm:flex-col padding-x sm:gap-[20px] xm:gap-[20px]">

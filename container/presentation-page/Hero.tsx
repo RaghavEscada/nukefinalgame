@@ -6,7 +6,7 @@ export default function Hero() {
 			<div className="w-full pt-[170px] pb-[20px]">
 				<div className="w-fit relative">
 					<h1 className="heading tracking-[-1.3px] text-black font-semibold font-FoundersGrotesk uppercase">
-					Bombin' works
+					Our Works
 						<sup className="paragraph bg-black font-normal absolute top-[20px] ml-[10px] font-NeueMontreal">
 						
 						</sup>

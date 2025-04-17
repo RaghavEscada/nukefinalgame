@@ -7,13 +7,13 @@ export default function Eyes({ className }: { className: string }) {
 	const [rotate, setRotate] = useState(0);
 	useEffect(() => {
 		window.addEventListener("mousemove", (e) => {
-			let mouseX = e.clientX;
-			let mouseY = e.clientY;
+			const mouseX = e.clientX;
+			const mouseY = e.clientY;
 
-			let deltaX = mouseX - window.innerWidth / 2;
-			let deltaY = mouseY - window.innerHeight / 2;
+			const deltaX = mouseX - window.innerWidth / 2;
+			const deltaY = mouseY - window.innerHeight / 2;
 
-			var angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+			const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
 			setRotate(angle - 280);
 		});
 	}, []);
